@@ -1,5 +1,7 @@
 // load news categories data
+const spinner = document.getElementById('spinner');
 const loadNewsCategories = async () =>{
+  spinner.classList.remove('hidden');
   const url = `https://openapi.programming-hero.com/api/news/categories`;
   const res = await fetch(url);
   const data = await res.json();
@@ -35,7 +37,7 @@ const displayNewsId = newsId =>{
 
   // find content number by clicking category name
   const findCategoryContent = document.getElementById('find-category-content');
-  findCategoryContent.innerText = `${newsId.length} Items Found For This Category`;
+  findCategoryContent.innerText = `${newsId.length ? newsId.length : "No"} Items Found`;
   // loop through an array
   newsId.forEach(newsDetails =>{
     // console.log(newsDetails);
@@ -65,7 +67,7 @@ const displayNewsId = newsId =>{
     `;
     cardContainer.appendChild(cardDiv);
   })
-
+  spinner.classList.add('hidden');
 }
 
 loadNewsCategories();
