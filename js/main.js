@@ -70,4 +70,6 @@ const displayNewsId = newsId =>{
   spinner.classList.add('hidden');
 }
 
+loadNewsCategoryId('01');
+
 loadNewsCategories();
