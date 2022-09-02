@@ -15,7 +15,7 @@ const displayNewsCategories = categories =>{
   categories.forEach(category => {
     const newsLi = document.createElement('li');
     newsLi.innerHTML = `
-    <a onclick="loadNewsCategoryId('${category.category_id}')" href="#" class="bg-gray-200 hover:bg-blue-100 px-2 py-1 my-2 inline-block rounded-sm">${category.category_name}</a>
+    <a onclick="loadNewsCategoryId('${category.category_id}')" href="#" class="bg-gray-200 hover:bg-blue-100 px-2 py-1 my-2 inline-block rounded-sm active">${category.category_name}</a>
     `;
     newsContainer.appendChild(newsLi);
     // console.log(category);
@@ -61,7 +61,7 @@ const displayNewsId = newsId =>{
           <div class="font-bold">
             <p><i class="fa-solid fa-eye"></i> ${newsDetails.total_view}</p>
           </div>
-          <button class="bg-blue-200 hover:bg-blue-300 px-4 py-2 rounded-md font-bold w-full md:w-auto mt-8 lg:mt-0">See Details <i class="fa-solid fa-arrow-right-long"></i></button>
+          <label class="btn modal-button text-slate-700 border-0 bg-blue-200 hover:bg-blue-300 px-4 py-2 rounded-md font-bold w-full md:w-auto mt-8 lg:mt-0" for="my-modal-5">See Details <i class="fa-solid fa-arrow-right-long ml-3"></i></label>
       </div>
     </div>
     `;
