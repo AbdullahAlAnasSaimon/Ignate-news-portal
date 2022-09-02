@@ -79,12 +79,26 @@ const loadNewsModalDetails = async id => {
   displayNewsModalDetails(data.data[0]);
 }
 
-const displayNewsModalDetails = details => {
-  console.log(details);
+const displayNewsModalDetails = cardDetails => {
+  console.log(cardDetails);
   const modalBody = document.getElementById('modal-body');
   modalBody.innerHTML = `
-  <h3 class="font-bold text-lg">${details.title}</h3>
-  <p class="py-4"></p>
+  <img src="${cardDetails.thumbnail_url}" class="block mx-auto my-8"/>
+  <h3 class="font-bold text-lg text-2xl mb-4">${cardDetails.title}</h3>
+  <p>${cardDetails.details}</p>
+        <div class="card-actions justify-between items-center flex-row mt-8 lg:mt-0">
+          <div class="flex items-center">
+            <div>
+              <img src="${cardDetails.author.img ? cardDetails.author.img : "No Image Found"}" alt="" class="w-10 h-10 rounded-full">
+            </div>
+            <div class="pl-4 font-semibold text-gray-500">
+              <p>${cardDetails.author.name ? cardDetails.author.name : "No Name Found"}</p>
+              <p class="text-sm text-gray-400">${cardDetails.author.published_date ? cardDetails.author.published_date : "No Date Found"}</p>
+            </div>
+          </div>
+          <div class="font-bold">
+            <p><i class="fa-solid fa-eye"></i> ${cardDetails.total_view}</p>
+          </div>
   <div class="modal-action">
     <label for="my-modal-5" class="btn bg-blue-300 text-slate-700 hover:bg-blue-400 border-0 font-bold">Close</label>
   </div>
