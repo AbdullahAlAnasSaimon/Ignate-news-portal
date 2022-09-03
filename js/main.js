@@ -13,11 +13,19 @@ const displayNewsCategories = categories => {
   categories.forEach(category => {
     const newsLi = document.createElement('li');
     newsLi.innerHTML = `
-    <a onclick="loadNewsCategoryId('${category.category_id}')" href="#" class="bg-gray-200 hover:bg-blue-100 px-2 py-1 my-2 inline-block rounded-sm active">${category.category_name}</a>
+    <a onclick="loadNewsCategoryId('${category.category_id}')" href="#" class="category-btn bg-gray-200 hover:bg-blue-100 px-2 py-1 my-2 inline-block rounded-sm active">${category.category_name}</a>
     `;
     newsContainer.appendChild(newsLi);
     // console.log(category);
+  })
+  // set the category name by clicking category button
+  const categoryBtn = document.getElementsByClassName('category-btn');
+  for(const category of categoryBtn){
+    category.addEventListener('click', function(){
+      const categoryName = document.getElementById('find-category-name');
+      categoryName.innerText = category.innerText;
   });
+  }
 }
 // load category content details
 const loadNewsCategoryId = async id => {
@@ -84,9 +92,10 @@ const displayNewsModalDetails = cardDetails => {
   console.log(cardDetails);
   const modalBody = document.getElementById('modal-body');
   modalBody.innerHTML = `
-  <img src="${cardDetails.thumbnail_url}" class="block mx-auto my-8"/>
-  <h3 class="font-bold text-lg text-2xl mb-4">${cardDetails.title}</h3>
-  <p>${cardDetails.details}</p>
+      <label for="my-modal-5" class="btn btn-sm btn-circle absolute right-2 top-2 bg-gray-300 hover:bg-gray-400 text-slate-700 border-0">✕</label>
+      <img src="${cardDetails.thumbnail_url}" class="block mx-auto my-8"/>
+      <h3 class="font-bold text-lg text-2xl mb-4">${cardDetails.title}</h3>
+      <p>${cardDetails.details}</p>
         <div class="card-actions justify-between items-center flex-row mt-8 lg:mt-0">
           <div class="flex items-center">
             <div>
