@@ -20,11 +20,11 @@
 </head>
 
 <body class="bg-stone-100 text-slate-700">
-
-  <!-- nav bar start -->
+<!-- header start -->
   <header class="">
-    <div class="flex gap-10 w-11/12 mx-auto p-4 justify-evenly items-center border-b-2">
-      <div class="w-5/12 md:w-8/12">
+    <!-- nav bar start -->
+    <div class="flex flex-wrap text-center md:text-left md:flex-nowrap gap-10 w-11/12 mx-auto p-4 justify-evenly items-center border-b-2">
+      <div class="w-8/12 md:w-8/12">
         <h1 class="text-2xl font-bold"><a href="index.html">Ignate News</a></h1>
       </div>
       <div>
@@ -35,18 +35,7 @@
         </ul>
       </div>
     </div>
-    <!-- <div class="navbar bg-base-100">
-      <div class="flex-1">
-        <a class="text-xl">Ignate News</a>
-      </div>
-      <div class="flex-none">
-        <ul class="menu menu-horizontal p-0">
-          <li><a>Item 1</a></li>
-          <li><a>Item 3</a></li>
-          <li><a href="#"><img src="images/avatar1.png" alt="" class="w-10 h-10 rounded-full"></a></li>
-        </ul>
-      </div>
-    </div> -->
+    <!-- nav bar end -->
     <!-- news category section start -->
     <section class="w-11/12 mx-auto">
       <ul id="news-categories-container" class="flex flex-wrap justify-evenly text-gray-600 p-6">
@@ -55,16 +44,33 @@
     </section>
     <!-- news category section end -->
   </header>
-  <!-- nav bar end -->
+  <!-- header end -->
   <main>
     <!-- count items section start -->
     <section>
-      <div class="w-10/12 mx-auto bg-white rounded-md mb-6">
-        <h2 id="find-category-content" class="text-xl font-bold p-3 pl-8 pr-0 inline-block">No Items Found</h2>
-        <h2 id="find-category-name" class="text-xl font-bold p-3 pl-0 inline-block">For Category</h2>
+      <div class="w-10/12 mx-auto bg-white rounded-md mb-6 p-3 pl-5">
+        <h2 id="find-category-content" class="text-xl font-bold inline-block">No Items Found</h2>
+        <h2 id="find-category-name" class="text-xl font-bold inline-block text-blue-500">Breaking News</h2>
       </div>
     </section>
     <!-- count items section end -->
+
+    <!-- sort section start -->
+    <section class="w-10/12 mx-auto">
+      <div class="flex justify-between">
+        <div class="flex gap-4 justify-around items-center">
+          <h2 class="text-lg font-semibold">Sort By View: </h2>
+          <select class="p-2 font-semibold" id="section-wrapper">
+            <option value="" selected>Default</option>
+          </select>
+        </div>
+        <div>
+          <button class="py-2 px-4 bg-blue-200 font-semibold text-lg rounded-md mr-2">Today's Pick</button>
+          <button class="py-2 px-4 bg-stone-100 border-2 border-blue-200 font-semibold text-lg rounded-md">Trending</button>
+        </div>
+      </div>
+    </section>
+    <!-- sort section end -->
 
     <!-- spinner start -->
     <section id="loader" class="hidden">

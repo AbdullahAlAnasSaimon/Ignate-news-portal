@@ -1,14 +1,19 @@
 // load news categories data
 const loadNewsCategories = async () => {
-  const url = `https://openapi.programming-hero.com/api/news/categories`;
-  const res = await fetch(url);
-  const data = await res.json();
-  // console.log(data.data.news_category);
-  displayNewsCategories(data.data.news_category);
+  try {
+    //  Block of code to try
+    const url = `https://openapi.programming-hero.com/api/news/categories`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsCategories(data.data.news_category);
+  }
+  catch(error) {
+    //  Block of code to handle errors
+    console.log(error);
+  }
 }
 // display news categories data on ui
 const displayNewsCategories = categories => {
-  // console.log(categories);
   const newsContainer = document.getElementById('news-categories-container');
   categories.forEach(category => {
     const newsLi = document.createElement('li');
@@ -16,7 +21,6 @@ const displayNewsCategories = categories => {
     <a onclick="loadNewsCategoryId('${category.category_id}')" href="#" class="category-btn bg-gray-200 hover:bg-blue-100 px-2 py-1 my-2 inline-block rounded-sm active">${category.category_name}</a>
     `;
     newsContainer.appendChild(newsLi);
-    // console.log(category);
   })
   // set the category name by clicking category button
   const categoryBtn = document.getElementsByClassName('category-btn');
@@ -30,26 +34,43 @@ const displayNewsCategories = categories => {
 // load category content details
 const loadNewsCategoryId = async id => {
   toggleSpinner(true);
-  const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
-  const res = await fetch(url);
-  const data = await res.json();
-  displayNewsDetails(data.data);
-
+  try{
+    const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data);
+  }
+  catch(error){
+    console.log(error);
+  }
 }
 // display category content details on ui
 const displayNewsDetails = newsId => {
-  // console.log(newsId);
   const cardContainer = document.getElementById('card-container');
   cardContainer.innerHTML = ``;
   // console.log(newsId);
 
+  const sortFunc = isSorting =>{
+    
+    if(isSorting === true){
+      newsId.sort(function(a, b){return b.total_view - a.total_view});
+      // console.log(sorting);
+    }else{
+      newsId.sort(function(a, b){return a.total_view - b.total_view});
+      // console.log(sorting);
+    }
+  }
+
+  sortFunc(true);
+  
   // find content number by clicking category name
   const findCategoryContent = document.getElementById('find-category-content');
-  findCategoryContent.innerText = `${newsId.length ? newsId.length : "No"} Items Found`;
+  findCategoryContent.innerText = `${newsId.length ? newsId.length : "No"} Items Found For`;
   
   // loop through an array
 
   newsId.forEach(newsDetails => {
+
     // console.log(newsDetails);
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card', 'card-side', 'bg-white', 'shadow-xl', 'my-8', 'flex-col', 'md:flex-row');
@@ -69,7 +90,7 @@ const displayNewsDetails = newsId => {
             </div>
           </div>
           <div class="font-bold">
-            <p><i class="fa-solid fa-eye"></i> ${newsDetails.total_view}</p>
+            <p><i class="fa-solid fa-eye"></i> ${newsDetails.total_view ? newsDetails.total_view : "No View"}</p>
           </div>
           <label onclick="loadNewsModalDetails('${newsDetails._id}')" class="btn modal-button text-slate-700 border-0 bg-blue-200 hover:bg-blue-300 px-4 py-2 rounded-md font-bold w-full md:w-auto mt-8 lg:mt-0" for="my-modal-5">See Details <i class="fa-solid fa-arrow-right-long ml-3"></i></label>
       </div>
