@@ -8,15 +8,6 @@
   <!-- daisy ui css link -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
   <title>Ignate News</title>
-  <style>
-    /* .active{
-      background-color: #d5e8fd !important;
-    } */
-    .spinner {
-      width: 20px;
-      height: 20px;
-    }
-  </style>
 </head>
 
 <body class="bg-stone-100 text-slate-700">
@@ -38,3 +29,53 @@
     <!-- nav bar end -->
   </header>
   <!-- header end -->
+  
+  <!-- accordian section start -->
+  <section class="w-8/12 mx-auto text-slate-700 my-10">
+    <h1 class="text-2xl font-bold my-6">Read Blogs</h1>
+    <!-- accordian 1 -->
+    <div tabindex="0" class="collapse collapse-plus border-2 border-gray-300 bg-white rounded-md my-4">
+      <div class="collapse-title text-xl font-medium">
+        What is the difference between var, let & const?
+      </div>
+      <div class="collapse-content"> 
+        <p>var came from first 3 letter of veriable keyword. var is function scoped. var can be re-declared and re-assigned. var are hoisted to the top. let is block scoped. let can be re-assigned but can not re-declared. const is block scoped. const can not be re-assigned or re-declared.</p>
+      </div>
+    </div>
+    <!-- accordian 2 -->
+    <div tabindex="0" class="collapse collapse-plus border-2 border-gray-300 bg-white rounded-md my-4">
+      <div class="collapse-title text-xl font-medium">
+        What is the difference between Arrow Function & Regular Function?
+      </div>
+      <div class="collapse-content"> 
+        <p>Arrow function and Regular function syntax are not same. In regular function this change according to the way that function is invoked. Arrow function don't have their own this. Arrow function does not support duplicate perameter but regular function does. In regular function, function gets hoisting at top but Arrow function get hoisted where it defined.</p>
+      </div>
+    </div>
+    <!-- accordian 3 -->
+    <div tabindex="0" class="collapse collapse-plus border-2 border-gray-300 bg-white rounded-md my-4">
+      <div class="collapse-title text-xl font-medium">
+        What is the difference between map, forEach, filter & find?
+      </div>
+      <div class="collapse-content"> 
+        <p>.map() executes the same code on every element in an array and returns a new array with the updated elements. forEach(), is used to execute the same code on every element in an array but does not change the array and it returns undefined. filter() checks every element in an array to see if it meets a certain criteria and returns a new array with the elements that return truthy for the criteria. find(), check every element in array to if it meets a certain criteria but it return only one element.</p>
+      </div>
+    </div>
+    <!-- accordian 4 -->
+    <div tabindex="0" class="collapse collapse-plus border-2 border-gray-300 bg-white rounded-md my-4">
+      <div class="collapse-title text-xl font-medium">
+        Why we will user Template String?
+      </div>
+      <div class="collapse-content"> 
+        <p>Template literals are enclosed by backtick (``) characters instead of double or single quotes. Along with having normal strings, template literals can also contain other parts called placeholders, which are embedded expressions delimited by a dollar sign and curly braces: ${expression}.</p>
+      </div>
+    </div>
+  </section>
+  <!-- accordian section end -->
+
+  <!-- tailwind css script link -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- font awesome kit link -->
+  <script src="https://kit.fontawesome.com/800e7af9df.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

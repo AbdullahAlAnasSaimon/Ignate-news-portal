@@ -18,17 +18,18 @@ const displayNewsCategories = categories => {
   categories.forEach(category => {
     const newsLi = document.createElement('li');
     newsLi.innerHTML = `
-    <a onclick="loadNewsCategoryId('${category.category_id}')" href="#" class="category-btn bg-gray-200 hover:bg-blue-100 px-2 py-1 my-2 inline-block rounded-sm active">${category.category_name}</a>
+    <a onclick="loadNewsCategoryId('${category.category_id}')" href="#" class="category-btn bg-gray-200 hover:bg-blue-100 px-2 py-1 my-2 inline-block rounded-sm">${category.category_name}</a>
     `;
     newsContainer.appendChild(newsLi);
   })
+
   // set the category name by clicking category button
   const categoryBtn = document.getElementsByClassName('category-btn');
   for(const category of categoryBtn){
     category.addEventListener('click', function(){
       const categoryName = document.getElementById('find-category-name');
       categoryName.innerText = category.innerText;
-  });
+    });
   }
 }
 // load category content details
@@ -48,30 +49,16 @@ const loadNewsCategoryId = async id => {
 const displayNewsDetails = newsId => {
   const cardContainer = document.getElementById('card-container');
   cardContainer.innerHTML = ``;
-  // console.log(newsId);
 
-  const sortFunc = isSorting =>{
-    
-    if(isSorting === true){
-      newsId.sort(function(a, b){return b.total_view - a.total_view});
-      // console.log(sorting);
-    }else{
-      newsId.sort(function(a, b){return a.total_view - b.total_view});
-      // console.log(sorting);
-    }
-  }
-
-  sortFunc(true);
+  // sorting high to low value
+    newsId.sort(function(a, b){return b.total_view - a.total_view});
   
   // find content number by clicking category name
   const findCategoryContent = document.getElementById('find-category-content');
   findCategoryContent.innerText = `${newsId.length ? newsId.length : "No"} Items Found For`;
   
   // loop through an array
-
   newsId.forEach(newsDetails => {
-
-    // console.log(newsDetails);
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card', 'card-side', 'bg-white', 'shadow-xl', 'my-8', 'flex-col', 'md:flex-row');
     cardDiv.innerHTML = `
@@ -97,18 +84,17 @@ const displayNewsDetails = newsId => {
     </div>
     `;
     cardContainer.appendChild(cardDiv);
-    // console.log(newsDetails._id);
   })
   toggleSpinner(false);
 }
-
+// load data for modal
 const loadNewsModalDetails = async id => {
   const url = `https://openapi.programming-hero.com/api/news/${id}`;
   const res = await fetch(url);
   const data = await res.json();
   displayNewsModalDetails(data.data[0]);
 }
-
+// display data in modal
 const displayNewsModalDetails = cardDetails => {
   console.log(cardDetails);
   const modalBody = document.getElementById('modal-body');
@@ -128,14 +114,14 @@ const displayNewsModalDetails = cardDetails => {
             </div>
           </div>
           <div class="font-bold">
-            <p><i class="fa-solid fa-eye"></i> ${cardDetails.total_view}</p>
+            <p><i class="fa-solid fa-eye"></i> ${cardDetails.total_view ? cardDetails.total_view : "No View"}</p>
           </div>
           <div class="modal-action">
             <label for="my-modal-5" class="btn bg-blue-300 text-slate-700 hover:bg-blue-400 border-0 font-bold">Close</label>
           </div>
   `;
 }
-
+// spinner function
 const toggleSpinner = isLoading =>{
   const loaderSection = document.getElementById('loader');
   if(isLoading === true){
@@ -144,7 +130,7 @@ const toggleSpinner = isLoading =>{
     loaderSection.classList.add('hidden');
   }
 }
-
+// default value set to ui
 loadNewsCategoryId('01');
 
 loadNewsCategories();

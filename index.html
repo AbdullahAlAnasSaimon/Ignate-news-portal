@@ -9,9 +9,9 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
   <title>Ignate News</title>
   <style>
-    /* .active{
-      background-color: #d5e8fd !important;
-    } */
+    .active{
+      background-color: #91c3fd !important;
+    }
     .spinner {
       width: 20px;
       height: 20px;
@@ -57,14 +57,14 @@
 
     <!-- sort section start -->
     <section class="w-10/12 mx-auto">
-      <div class="flex justify-between">
-        <div class="flex gap-4 justify-around items-center">
+      <div class="flex flex-wrap md:flex-nowrap justify-between">
+        <div class="flex gap-4 justify-around items-center my-4 md:my-0 mx-auto md:mx-0">
           <h2 class="text-lg font-semibold">Sort By View: </h2>
           <select class="p-2 font-semibold" id="section-wrapper">
             <option value="" selected>Default</option>
           </select>
         </div>
-        <div>
+        <div class="my-4 md:my-0 mx-auto md:mx-0">
           <button class="py-2 px-4 bg-blue-200 font-semibold text-lg rounded-md mr-2">Today's Pick</button>
           <button class="py-2 px-4 bg-stone-100 border-2 border-blue-200 font-semibold text-lg rounded-md">Trending</button>
         </div>
