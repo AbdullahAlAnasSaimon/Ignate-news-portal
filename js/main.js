@@ -1,11 +1,8 @@
 // load news categories data
-const spinner = document.getElementById('spinner');
 const loadNewsCategories = async () => {
-  spinner.classList.remove('hidden');
   const url = `https://openapi.programming-hero.com/api/news/categories`;
   const res = await fetch(url);
   const data = await res.json();
-
   // console.log(data.data.news_category);
   displayNewsCategories(data.data.news_category);
 }
@@ -22,16 +19,17 @@ const displayNewsCategories = categories => {
     // console.log(category);
   });
 }
-// load category details by category id
+// load category content details
 const loadNewsCategoryId = async id => {
+  toggleSpinner(true);
   const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
   const res = await fetch(url);
   const data = await res.json();
   displayNewsDetails(data.data);
+
 }
-// display category details
+// display category content details on ui
 const displayNewsDetails = newsId => {
-  spinner.classList.add('hidden');
   // console.log(newsId);
   const cardContainer = document.getElementById('card-container');
   cardContainer.innerHTML = ``;
@@ -40,7 +38,9 @@ const displayNewsDetails = newsId => {
   // find content number by clicking category name
   const findCategoryContent = document.getElementById('find-category-content');
   findCategoryContent.innerText = `${newsId.length ? newsId.length : "No"} Items Found`;
+  
   // loop through an array
+
   newsId.forEach(newsDetails => {
     // console.log(newsDetails);
     const cardDiv = document.createElement('div');
@@ -53,7 +53,7 @@ const displayNewsDetails = newsId => {
         <div class="card-actions justify-between items-center flex-row mt-8 lg:mt-0">
           <div class="flex items-center">
             <div>
-              <img src="${newsDetails.author.img ? newsDetails.author.img : "No Image Found"}" alt="" class="w-10 h-10 rounded-full">
+              <img src="${newsDetails.author.img ? newsDetails.author.img : 'No Image Found'}" alt="" class="w-10 h-10 rounded-full">
             </div>
             <div class="pl-4 font-semibold text-gray-500">
               <p>${newsDetails.author.name ? newsDetails.author.name : "No Name Found"}</p>
@@ -70,6 +70,7 @@ const displayNewsDetails = newsId => {
     cardContainer.appendChild(cardDiv);
     // console.log(newsDetails._id);
   })
+  toggleSpinner(false);
 }
 
 const loadNewsModalDetails = async id => {
@@ -99,10 +100,19 @@ const displayNewsModalDetails = cardDetails => {
           <div class="font-bold">
             <p><i class="fa-solid fa-eye"></i> ${cardDetails.total_view}</p>
           </div>
-  <div class="modal-action">
-    <label for="my-modal-5" class="btn bg-blue-300 text-slate-700 hover:bg-blue-400 border-0 font-bold">Close</label>
-  </div>
+          <div class="modal-action">
+            <label for="my-modal-5" class="btn bg-blue-300 text-slate-700 hover:bg-blue-400 border-0 font-bold">Close</label>
+          </div>
   `;
+}
+
+const toggleSpinner = isLoading =>{
+  const loaderSection = document.getElementById('loader');
+  if(isLoading === true){
+    loaderSection.classList.remove('hidden');
+  }else{
+    loaderSection.classList.add('hidden');
+  }
 }
 
 loadNewsCategoryId('01');
